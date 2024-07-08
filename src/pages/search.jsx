@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FaSearch, FaQrcode } from 'react-icons/fa';
 import QrScanner from 'react-qr-scanner';
-
 const SearchBar = () => {
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState(null);
