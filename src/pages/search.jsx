@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { FaQrcode } from 'react-icons/fa';
-import QrReader from 'react-qr-reader';
+import { FaSearch, FaQrcode } from 'react-icons/fa';
+import { Scanner } from '@yudiel/react-qr-scanner';
 
 const SearchBar = () => {
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState(null);
 
-  const handleScan = (data) => {
-    if (data) {
-      setScanResult(data);
+  const handleScan = (result) => {
+    if (result) {
+      setScanResult(result[0]?.rawValue);
       setIsScanning(false);
     }
   };
@@ -40,14 +40,13 @@ const SearchBar = () => {
       {isScanning && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
           <div className="bg-white p-4 rounded-md">
-            <QrReader
-              delay={300}
-              style={previewStyle}
+            <Scanner
+              onScan={handleScan}
+              onError={handleError}
               constraints={{
                 facingMode: 'environment'
               }}
-              onError={handleError}
-              onScan={handleScan}
+              style={previewStyle}
             />
             <button
               className="mt-4 p-2 bg-red-500 text-white rounded-md"
