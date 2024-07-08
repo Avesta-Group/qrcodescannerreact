@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FaSearch, FaQrcode } from 'react-icons/fa';
+import { FaQrcode } from 'react-icons/fa';
 import QrScanner from 'react-qr-scanner';
+
 const SearchBar = () => {
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState(null);
@@ -44,6 +45,7 @@ const SearchBar = () => {
               style={previewStyle}
               onError={handleError}
               onScan={handleScan}
+              constraints={{ facingMode: { exact: "environment" } }} // Set to use the back camera
             />
             <button
               className="mt-4 p-2 bg-red-500 text-white rounded-md"
